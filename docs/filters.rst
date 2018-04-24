@@ -17,7 +17,7 @@ The :meth:`web3.eth.Eth.filter` method can be used to setup filters for:
 
     .. code-block:: python
 
-        event_filter = mycontract.events.myEvent.createEvent(fromBlock='latest', {'filter': {'arg1':10}})
+        event_filter = mycontract.events.myEvent.createFilter(fromBlock='latest', {'filter': {'arg1':10}})
 
     Or built manually by supplying `valid filter params <https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newfilter/>`_:
 
@@ -80,7 +80,7 @@ Block and Transaction Filter Classes
 ------------------------------------
 
 .. py:class:: BlockFilter(...)
-    
+
 BlockFilter is a subclass of :class:``Filter``.
 
 You can setup a filter for new blocks using ``web3.eth.filter('latest')`` which
@@ -107,7 +107,7 @@ will return a new :py:class:`BlockFilter` object.
 Event Log Filters
 -----------------
 
-You can set up a filter for event logs using the web3.py contract api: 
+You can set up a filter for event logs using the web3.py contract api:
 :func:`web3.contract.Contract.events.<event_name>.createFilter`, which provides some conveniances for
 creating event log filters. Refer to the following example:
 
@@ -195,15 +195,15 @@ Asynchronous Filter Polling
 
 Starting with web3 version 4, the ``watch`` method was taken out of the web3 filter objects.
 There are many decisions to be made when designing a system regarding threading and concurrency.
-Rather than force a decision, web3 leaves these choices up to the user. Below are some example 
+Rather than force a decision, web3 leaves these choices up to the user. Below are some example
 implementations of asynchronous filter-event handling that can serve as starting points.
 
 Single threaded concurrency with ``async`` and ``await``
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Beginning in python 3.5, the ``async`` and ``await`` built-in keywords were added.  These provide a
-shared api for coroutines that can be utilized by modules such as the built-in asyncio_.  Below is 
-an example event loop using asyncio_, that polls multiple web3 filter object, and passes new 
+shared api for coroutines that can be utilized by modules such as the built-in asyncio_.  Below is
+an example event loop using asyncio_, that polls multiple web3 filter object, and passes new
 entries to a handler.
 
         .. code-block:: python
@@ -242,7 +242,7 @@ entries to a handler.
 Running the event loop in a separate thread
 """""""""""""""""""""""""""""""""""""""""""
 
-Here is an extended version of above example, where the event loop is run in a separate thread, 
+Here is an extended version of above example, where the event loop is run in a separate thread,
 releasing the ``main`` function for other tasks.
 
         .. code-block:: python
